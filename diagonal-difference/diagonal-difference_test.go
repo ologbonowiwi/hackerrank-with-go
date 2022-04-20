@@ -25,6 +25,13 @@ func Test_diagonalDifference(t *testing.T) {
 			},
 			want: 15,
 		},
+		{
+			name: "should return 1",
+			args: args{
+				arr: [][]int32{{-1, 1, -7, -8}, {-10, -8, -5, -2}, {0, 9, 7, -1}, {4, 4, -2, 1}},
+			},
+			want: 1,
+		},
 		// TODO: Add test cases.
 	}
 	for _, tt := range tests {

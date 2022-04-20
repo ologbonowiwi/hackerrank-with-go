@@ -31,18 +31,17 @@ func diagonalDifference(arr [][]int32) int32 {
 	var leftToRightDiagonalAccumulator int32 = 0
 	var rightToLeftDiagonalAccumulator int32 = 0
 
-	firstAndLastCells := []int{0, len(arr) - 1}
+	n := int(0)
+	m := int(len(arr) - 1)
 
 	for rowIndex, rowValues := range arr {
+		acceptableCells := []int{n + rowIndex, m - rowIndex}
+
 		for columnIndex, cell := range rowValues {
 			if columnIndex == rowIndex {
 				leftToRightDiagonalAccumulator += cell
-
-				// validating just columnIndex because columnIndex and rowIndex are the same
-				if !contains(firstAndLastCells, columnIndex) {
-					rightToLeftDiagonalAccumulator += cell
-				}
-			} else if contains(firstAndLastCells, rowIndex) && contains(firstAndLastCells, columnIndex) {
+			}
+			if acceptableCells[0] == rowIndex && acceptableCells[1] == columnIndex {
 				rightToLeftDiagonalAccumulator += cell
 			}
 		}
