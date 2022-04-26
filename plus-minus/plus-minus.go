@@ -9,28 +9,26 @@ import (
 	"strings"
 )
 
+func toFixed(value float64, n float64) string {
+	return strconv.FormatFloat(value/n, 'f', 6, 64)
+}
+
 func calculateProportions(arr []int32) []string {
 	n := float64(len(arr))
 
 	var positives, negatives, zeros float64 = 0, 0, 0
 
 	for _, value := range arr {
-		if value == 0 {
-			zeros += 1
-		} else if value > 0 {
+		if value > 0 {
 			positives += 1
 		} else if value < 0 {
 			negatives += 1
+		} else if value == 0 {
+			zeros += 1
 		}
 	}
 
-	values := []string{}
-
-	for _, possibility := range []float64{positives, negatives, zeros} {
-		values = append(values, strconv.FormatFloat(possibility/n, 'f', 6, 64))
-	}
-
-	return values
+	return []string{toFixed(positives, n), toFixed(negatives, n), toFixed(zeros, n)}
 }
 
 /*
