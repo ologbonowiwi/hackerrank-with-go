@@ -35,6 +35,13 @@ func Test_calcSums(t *testing.T) {
 			},
 			want: []int64{299, 9271},
 		},
+		{
+			name: "Example 4",
+			args: args{
+				arr: []int32{int32(501893267), int32(649027153), int32(379408215), int32(452968170), int32(487530619)},
+			},
+			want: []int64{1821800271, 2091419209},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
