@@ -13,7 +13,8 @@ func buildStarcaise(n int32) []string {
 	stairs := make([]string, n)
 
 	for index := range stairs {
-		stairs[index] = strings.Repeat("#", index+1)
+		counter := index + 1
+		stairs[index] = strings.Repeat(" ", int(n)-counter) + strings.Repeat("#", counter)
 	}
 
 	return stairs
