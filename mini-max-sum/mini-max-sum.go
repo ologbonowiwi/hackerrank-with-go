@@ -10,17 +10,17 @@ import (
 	"strings"
 )
 
-type SortableInt64 []int64
+type SortableInt32 []int32
 
-func (arr SortableInt64) Len() int {
+func (arr SortableInt32) Len() int {
 	return len(arr)
 }
 
-func (arr SortableInt64) Less(a, b int) bool {
+func (arr SortableInt32) Less(a, b int) bool {
 	return arr[a] < arr[b]
 }
 
-func (arr SortableInt64) Swap(a, b int) {
+func (arr SortableInt32) Swap(a, b int) {
 	arr[a], arr[b] = arr[b], arr[a]
 }
 
@@ -31,23 +31,19 @@ func remove(slice []int64, index int) []int64 {
 func calcSums(arr []int32) []int64 {
 	lastIndex := len(arr) - 1
 
-	parsedArr := make(SortableInt64, int(len(arr)))
+	sortableArr := append(make(SortableInt32, int(len(arr))), arr...)
 
-	for index, value := range arr {
-		parsedArr[index] = int64(value)
-	}
+	sort.Sort(sortableArr)
 
-	sort.Sort(parsedArr)
-
-	smallest, greatest, rest := parsedArr[0], parsedArr[lastIndex], parsedArr[1:lastIndex]
+	smallest, greatest, rest := sortableArr[0], sortableArr[lastIndex], sortableArr[1:lastIndex]
 
 	accumulator := int64(0)
 
 	for _, value := range rest {
-		accumulator += value
+		accumulator += int64(value)
 	}
 
-	return []int64{accumulator + smallest, accumulator + greatest}
+	return []int64{accumulator + int64(smallest), accumulator + int64(greatest)}
 }
 
 /*
