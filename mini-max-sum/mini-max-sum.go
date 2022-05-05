@@ -31,7 +31,7 @@ func remove(slice []int64, index int) []int64 {
 func calcSums(arr []int32) []int64 {
 	lastIndex := len(arr) - 1
 
-	sortableArr := append(make(SortableInt32, int(len(arr))), arr...)
+	sortableArr := append(make(SortableInt32, 0), arr...)
 
 	sort.Sort(sortableArr)
 
