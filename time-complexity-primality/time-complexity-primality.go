@@ -18,16 +18,23 @@ import (
 
 func primality(n int32) string {
 	if n == 1 {
-		return "Prime"
+		return "Not prime"
 	}
 
-	var i int32 = 2
+	if n%2 == 0 && n != 2 {
+		return "Not prime"
+	}
 
-	for i < n {
-		if n%i == 0 {
+	var i int32 = 3
+	var j int32 = n - 1
+
+	for i <= j {
+		if n%i == 0 || n%j == 0 {
 			return "Not prime"
 		}
-		i++
+
+		i += 2
+		j -= 2
 	}
 
 	return "Prime"
